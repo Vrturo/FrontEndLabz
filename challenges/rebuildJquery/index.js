@@ -12,7 +12,7 @@ var ss = new SweetSelector();
 // console.log(ss.select('#fade1'))
 // console.log(ss.select('div'))
 
-class DOM{
+class DOM {
 
     hide( element ) {
         element = element.length <= 1 ? [element] : element;
@@ -33,3 +33,16 @@ var d = new DOM();
 var div = ss.select('div')
 console.log(d.hide(div))
 console.log(d.show(div))
+
+class EventDispatcher {
+
+    on( element, event ) {
+        element.addEventListener(event);
+    }
+
+    trigger( element, event) {
+        element.on( event );
+    }
+}
+
+
