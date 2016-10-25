@@ -46,6 +46,20 @@ class EventDispatcher {
 }
 
 
+// AJAX using Pure JavaScript
+
+// We can use the XMLHttpRequest (also referred to as the XHR) object to communicate with the server.
+// Using XHR object, a web page can interact with interact with PHP scripts, databases, applications
+// and even text files located on the server.
+// By “interact” we mean that it can both send and retrieve data from those various sources.
+// This interaction is typically driven by JavaScript, and a simple Ajax implementation takes place in four steps:
+
+// 1. Create an instance of the XMLHttpRequest object
+// 2. Use open() method of the XHR to specify what kind of data you want
+// 3. Create a function to utilize the results
+// 4. Use the XHR’s send() method to send the request
+// 5. Receive the response
+
 class AjaxWrapper {
 
     request( url, method, id ){
