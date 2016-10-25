@@ -40,9 +40,32 @@ class EventDispatcher {
         element.addEventListener(event);
     }
 
-    trigger( element, event) {
+    trigger( element, event ) {
         element.on( event );
     }
 }
+
+
+class AjaxWrapper {
+
+    request( url, method, id ){
+        document.getElementById(id).onclick=function(){
+            var xhr = new XMLHttpRequest();
+            xhr.open(method, url, true);
+            xhr.onreadystatechange = function () {
+                if ( xhr.readyState==4 && xhr.status==200 ){
+                    document.getElementById(id).innerHTML=xhr.responseText;
+                }
+            }
+            xhr.send();
+        }
+    }
+}
+
+var ex = new AjaxWrapper();
+
+console.log( ex.request('https://baconipsum.com/api/?type=meat-and-filler', 'GET', 'home') );
+
+
 
 
