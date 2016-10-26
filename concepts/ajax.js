@@ -163,3 +163,4 @@ You still use JavaScript to display the results on the web page.
 In most cases, you use JSON or XML to exchange data between the browser and the server.
 However, irrespective of how complicated your AJAX application is, the steps are as outlined above.
 
+
