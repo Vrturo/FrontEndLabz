@@ -169,12 +169,12 @@ This object makes it quite easy for a JavaScript to communicate with the server.
 
 Modern Javascript libraries make it much easier to implement AJAX requests. The sample above done with the help of jQuery library will look like this:
 
-  ```$('#actbutton').click(function() {
-      $.ajax('/data/update_info.txt', {
-          success: function(data) {
-              $('#myContent').html(data);
-          }
-      }
+  ```$('#actbutton').click(function() {<br/>
+      $.ajax('/data/update_info.txt', {<br/>
+          success: function(data) {<br/>
+              $('#myContent').html(data);<br/>
+          }<br/>
+      }<br/>
   );```
 
 The ajax function in jQuery has several options and parameters that allows lower level handling of AJAX requests.
