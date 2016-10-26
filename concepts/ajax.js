@@ -1,4 +1,5 @@
 What is AJAX? (Asynchronous Javascript And Xml)
+================================================
 
 AJAX is an acronym which stands for Asynchronous JavaScript and XML.
 It is a programming technology which is used to create more interactive web pages.
@@ -32,135 +33,138 @@ The JavaScript sends a request to the server; reads the response and displays th
 This may sound complicated, but it isn’t really. Modern browsers have an inbuilt object called the XMLHttpRequest object.
 This object makes it quite easy for a JavaScript to communicate with the server.
 
-AJAX using Pure JavaScript
+## AJAX using Pure JavaScript
 
-Implementing some sample code using pure JavaScript will help you understand AJAX better.
+  Implementing some sample code using pure JavaScript will help you understand AJAX better.
 
-We can use the XMLHttpRequest (also referred to as the XHR) object to communicate with the server.
-Using XHR object, a web page can interact with interact with PHP scripts, databases, applications
-and even text files located on the server.
-By “interact” we mean that it can both send and retrieve data from those various sources.
-This interaction is typically driven by JavaScript, and a simple Ajax implementation takes place in four steps:
+  We can use the XMLHttpRequest (also referred to as the XHR) object to communicate with the server.
+  Using XHR object, a web page can interact with interact with PHP scripts, databases, applications
+  and even text files located on the server.
+  By “interact” we mean that it can both send and retrieve data from those various sources.
+  This interaction is typically driven by JavaScript, and a simple Ajax implementation takes place in four steps:
 
-  1. Create an instance of the XMLHttpRequest object
+    1. Create an instance of the XMLHttpRequest object
 
-      To create an instance of XHR, you simply get a variable name,
-      and use the new XMLHttpRequest() method to crate the instance.
+        To create an instance of XHR, you simply get a variable name,
+        and use the new XMLHttpRequest() method to crate the instance.
 
-        var xhr = new XMLHttpRequest();
+          var xhr = new XMLHttpRequest();
 
-  2. Use open() method of the XHR to specify what kind of data you want
+    2. Use open() method of the XHR to specify what kind of data you want
 
-      The XHR’s open() is used to specify the kind of data an object wants from the server.
-      You basically use it to describe what you want from the server.
-      It takes three arguments i.e. the type of request, the location of the file on the server, and a synchronous indicator.
+        The XHR’s open() is used to specify the kind of data an object wants from the server.
+        You basically use it to describe what you want from the server.
+        It takes three arguments i.e. the type of request, the location of the file on the server, and a synchronous indicator.
 
-      Calling it looks like this:
-        xhr.open(request, url, async)
+        Calling it looks like this:
+          xhr.open(request, url, async)
 
-        request ‐ this is the type of request you are sending to the server.
-                  It takes one of two values: GET or POST. In simple terms,
-                  GET is for retrieving something from the server.
-                  POST is for sending something to the server.
+          request ‐ this is the type of request you are sending to the server.
+                    It takes one of two values: GET or POST. In simple terms,
+                    GET is for retrieving something from the server.
+                    POST is for sending something to the server.
 
-        url ‐ this is the URL of the file on the server.
-              It is can be static or relative URL or simply the path from the folder which contains the web page.
+          url ‐ this is the URL of the file on the server.
+                It is can be static or relative URL or simply the path from the folder which contains the web page.
 
-        async ‐ this is used to determine whether or not the request should be executed asynchronously.
-        It takes the value “true” or “false”. True is for asynchronous execution. False is for synchronous execution.
+          async ‐ this is used to determine whether or not the request should be executed asynchronously.
+          It takes the value “true” or “false”. True is for asynchronous execution. False is for synchronous execution.
 
-        In our case, we shall call the open() method as follows:
+          In our case, we shall call the open() method as follows:
 
-          xhr.open("GET", "ajax_data.txt", true);
+            xhr.open("GET", "ajax_data.txt", true);
 
-  3. Create a function to utilize the results
+    3. Create a function to utilize the results
 
-      An XHR object has many inbuilt variables in which it stores data retrieved from the server.
-      One of these variables is called responseText.
+        An XHR object has many inbuilt variables in which it stores data retrieved from the server.
+        One of these variables is called responseText.
 
-      When we call xhr.open(), it will fetch the text information stored “ajax_data.txt”
-      and store it in its responseText variable. So, to access the data, we simply have to call xhr.responseText
+        When we call xhr.open(), it will fetch the text information stored “ajax_data.txt”
+        and store it in its responseText variable. So, to access the data, we simply have to call xhr.responseText
 
-        function() {
-          document.getElementByID("myContent").innerHTML = xhr.responseText;
+          function() {
+            document.getElementByID("myContent").innerHTML = xhr.responseText;
+          }
+
+        This function basically replaces the HTML found in the <div> “myContent” with the text fetched from the server.
+
+    4. Use the XHR’s send() method to send the request
+
+        The send() method is used to send the request to the server.
+        It doesn’t take any parameters, so you simply call it as follows:
+
+          xhr.send();
+
+    5. Receive the response
+
+      How do you know when a response has come from the server?
+      XHR has two properties are used to indicate a response from the server.
+      The first is “readyState”, and the second is “status”.
+
+        The “readyState” property records how the request is progressing.
+        It returns a numerical value, numbered 0 to 4 which indicate different states of progress.
+        The numbers translate as follows:
+
+          0 ‐ request not initialized
+          1 ‐ connection to server established
+          2 ‐ request received by server
+          3 ‐ server is processing the request
+          4 ‐ the request has been processed, and the response is ready
+
+        The “status” property indicates whether or not the request was successfully executed.
+
+          200 ‐ request successfully executed and response delivered
+          404 ‐ page not found
+
+      You can access these properties by referencing them from the XHR variable as follows:
+
+        xhr.readyState or xhr.status
+
+      So, our function code has to be rewritten as follows :
+
+        function () {
+            if( xhr.readyState==4 && xhr.status==200 ){
+                document.getElementById("myContent").innerHTML = xhr.responseText;
+            }
         }
 
-      This function basically replaces the HTML found in the <div> “myContent” with the text fetched from the server.
+      So, how do we know that a response has come from the server?
 
-  4. Use the XHR’s send() method to send the request
+      Well, XHR has an event has an event which is triggered every time the “readyState” changes.
+      This event is called “onreadystatechange” event.
+      This event is the perfect way to execute any function designed to utilize the results retrieved from the server.
+      You simply assign the function to respond to this event like so: onreadystatechange = function_name;
 
-      The send() method is used to send the request to the server.
-      It doesn’t take any parameters, so you simply call it as follows:
+      Since we are using an anonymous function, we attach it as follows:
 
-        xhr.send();
+        xhr.onreadystatechange = function () {
+            if( xhr.readyState==4 && xhr.status==200 ) {
+                document.getElementById("myContent").innerHTML = xhr.responseText;
+            }
+        }
 
-  5. Receive the response
+  We have completed the five steps, and our AJAX implementation is ready to go.
+  We simply have to bring it all together under a function. So, it all comes together like this:
 
-    How do you know when a response has come from the server?
-    XHR has two properties are used to indicate a response from the server.
-    The first is “readyState”, and the second is “status”.
+    document.getElementById('actbutton').onclick = function(){
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "http://codepen.io/prasanthmj/pen/ICgxE.html", true);
 
-      The “readyState” property records how the request is progressing.
-      It returns a numerical value, numbered 0 to 4 which indicate different states of progress.
-      The numbers translate as follows:
-
-        0 ‐ request not initialized
-        1 ‐ connection to server established
-        2 ‐ request received by server
-        3 ‐ server is processing the request
-        4 ‐ the request has been processed, and the response is ready
-
-      The “status” property indicates whether or not the request was successfully executed.
-
-        200 ‐ request successfully executed and response delivered
-        404 ‐ page not found
-
-    You can access these properties by referencing them from the XHR variable as follows:
-
-      xhr.readyState or xhr.status
-
-    So, our function code has to be rewritten as follows :
-
-      function () {
-          if( xhr.readyState==4 && xhr.status==200 ){
-              document.getElementById("myContent").innerHTML = xhr.responseText;
-          }
+      xhr.onreadystatechange = function (){
+        if ( xhr.readyState==4 && xhr.status==200 ){
+            document.getElementById("myContent").innerHTML = xhr.responseText;
+        }
       }
-
-    So, how do we know that a response has come from the server?
-
-    Well, XHR has an event has an event which is triggered every time the “readyState” changes.
-    This event is called “onreadystatechange” event.
-    This event is the perfect way to execute any function designed to utilize the results retrieved from the server.
-    You simply assign the function to respond to this event like so: onreadystatechange = function_name;
-
-    Since we are using an anonymous function, we attach it as follows:
-
-      xhr.onreadystatechange = function () {
-          if( xhr.readyState==4 && xhr.status==200 ) {
-              document.getElementById("myContent").innerHTML = xhr.responseText;
-          }
-      }
-
-We have completed the five steps, and our AJAX implementation is ready to go.
-We simply have to bring it all together under a function. So, it all comes together like this:
-
-  document.getElementById('actbutton').onclick = function(){
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://codepen.io/prasanthmj/pen/ICgxE.html", true);
-
-    xhr.onreadystatechange = function (){
-      if ( xhr.readyState==4 && xhr.status==200 ){
-          document.getElementById("myContent").innerHTML = xhr.responseText;
-      }
+      xhr.send();
     }
-    xhr.send();
-  }
 
-This is how to work with AJAX using pure Javascript.
-You use JavaScript to send requests to the server using an XMLHttpRequest object.
-You still use JavaScript to display the results on the web page.
-In most cases, you use JSON or XML to exchange data between the browser and the server.
-However, irrespective of how complicated your AJAX application is, the steps are as outlined above.
+  This is how to work with AJAX using pure Javascript.
+  You use JavaScript to send requests to the server using an XMLHttpRequest object.
+  You still use JavaScript to display the results on the web page.
+  In most cases, you use JSON or XML to exchange data between the browser and the server.
+  However, irrespective of how complicated your AJAX application is, the steps are as outlined above.
+
+
+## AJAX using jQuery
 
 
