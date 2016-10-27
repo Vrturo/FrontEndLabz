@@ -1,7 +1,7 @@
 body {
   font: 12px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
   color: #404040;
-  background: #d8e5e5;
+  background: #f0f0f0;
 }
 
 .calc {
@@ -14,7 +14,7 @@ body {
 }
 
 .calc-display {
-  margin: 0 0 20px;
+  margin: 0 5px 20px 4px;
   padding: 3px;
   background: #222;
   border-radius: 3px;
@@ -59,5 +59,17 @@ body {
   box-shadow: inset 0px 4px rgba(0, 0, 0, 0.2);
   line-height: 36px;
   text-align: center;
+}
+
+.toggle {
+  background: #9a9696;
+}
+
+.red {
+  background: #ff4561;
+}
+
+.yellow {
+  background: #ffa70c
 }
 
