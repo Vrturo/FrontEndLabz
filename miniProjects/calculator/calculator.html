@@ -2,43 +2,36 @@
 <html>
   <head>
     <title>Calculator</title>
+    <link rel="stylesheet" type="text/css" href="calculator.css">
   </head>
   <body>
     <form class="calc">
-      <p class="calc-display">
-        <input type="text" name="res" id="res" value="4815.1623" class="calc-display-input">
-      </p>
-      <p class="calc-row">
-        <button type="button" class="calc-button">mrc</button>
-        <button type="button" class="calc-button">m-</button>
-        <button type="button" class="calc-button">m+</button>
-        <button type="button" class="calc-button">÷</button>
-      </p>
-      <p class="calc-row">
-        <button type="button" class="calc-button">7</button>
-        <button type="button" class="calc-button">8</button>
-        <button type="button" class="calc-button">9</button>
-        <button type="button" class="calc-button">x</button>
-      </p>
-      <p class="calc-row">
-        <button type="button" class="calc-button">4</button>
-        <button type="button" class="calc-button">5</button>
-        <button type="button" class="calc-button">6</button>
-        <button type="button" class="calc-button">-</button>
-      </p>
-      <p class="calc-row">
-        <button type="button" class="calc-button">1</button>
-        <button type="button" class="calc-button">2</button>
-        <button type="button" class="calc-button">3</button>
-        <button type="button" class="calc-button">+</button>
-      </p>
-      <p class="calc-row">
-        <button type="button" class="calc-button">0</button>
-        <button type="button" class="calc-button">.</button>
-        <button type="button" class="calc-button">C</button>
-        <button type="button" class="calc-button">=</button>
-      </p>
+      <div class="calc-display">
+        <input type="text" name="res" id="res" placeholder="Press Stuff!" class="calc-display-input">
+      </div>
+      <div class="calc-row">
+        <span class="calc-button">MC</span>
+        <span class="calc-button">M+</span>
+        <span class="calc-button">M-</span>
+        <span class="calc-button">MR</span>
+        <span class="calc-button">7</span>
+        <span class="calc-button">8</span>
+        <span class="calc-button">9</span>
+        <span class="calc-button">x</span>
+        <span class="calc-button">4</span>
+        <span class="calc-button">5</span>
+        <span class="calc-button">6</span>
+        <span class="calc-button">-</span>
+        <span class="calc-button">1</span>
+        <span class="calc-button">2</span>
+        <span class="calc-button">3</span>
+        <span class="calc-button">+</span>
+        <span class="calc-button">0</span>
+        <span class="calc-button">.</span>
+        <span class="calc-button">C</span>
+        <span class="calc-button">=</span>
+      </div>
     </form>
-
+  <script type="text/javascript" src="calculator.js"></script>
   </body>
 </html>

@@ -1,0 +1,57 @@
+body {
+  font: 12px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
+  color: #404040;
+  background: #d8e5e5;
+}
+
+.calc {
+  margin: 50px auto;
+  padding: 15px;
+  width: 30%;
+  background: #3d4543;
+  border: 1px solid #222;
+  border-radius: 4px;
+}
+
+.calc-display {
+  margin: 0 0 20px;
+  padding: 3px;
+  background: #222;
+  border-radius: 3px;
+}
+
+.calc-display-input {
+  display: block;
+  width: 100%;
+  height: 35px;
+  padding: 10 10;
+  font: 26px/35px UbuntuMono, monospace;
+  color: #444;
+  text-align: right;
+  background: #bccd95;
+  border: 1px solid #222;
+  border-radius: 2px;
+}
+
+.calc-row {
+  margin-top: 7px;
+}
+
+.calc-button {
+  float: left;
+  padding: 0;
+  margin: 0 0 0 7px;
+  width: 20%;
+  font: 14px/23px UbuntuMono, monospace;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 1px rgba(black, .4);
+  background: #313131;
+  background-clip: padding-box !important;
+  border: 0;
+  border: 1px solid rgba(black, .8);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
