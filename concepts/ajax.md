@@ -169,14 +169,36 @@ This object makes it quite easy for a JavaScript to communicate with the server.
 
 Modern Javascript libraries make it much easier to implement AJAX requests. The sample above done with the help of jQuery library will look like this:
 
-  ```$('#actbutton').click(function() {<br/>
-      $.ajax('/data/update_info.txt', {<br/>
-          success: function(data) {<br/>
-              $('#myContent').html(data);<br/>
-          }<br/>
-      }<br/>
-  );```
+  $('#actbutton').click(function() {
+      $.ajax('/data/update_info.txt', {
+          success: function(data) {
+              $('#myContent').html(data);
+          }
+      }
+  );
 
 The ajax function in jQuery has several options and parameters that allows lower level handling of AJAX requests.
 
+The ajax function in jQuery has several options and parameters that allows lower level handling of AJAX requests.
+
+jQuery library also has several short hand methods to do AJAX requests: load(), jQuery.get(), jQuery.post() and jQuery.getJSON are some examples.
+
+Here is another example using AJAX. It is common to have drop-down lists with a big number of items in forms. Often, the items in the list would be duplicates. For example, a ‘country’ drop-down list.
+
+The easy solution for this is to load the list dynamically using AJAX.
+Here is the Code:
+
+function loadlist(listid) {
+    $(listid).html('');
+    $.getJSON('/data/countries.json', function(list) {
+      jQuery.each(list, function(i,obj) {
+            $(listid).append(
+              $('<option></option>')
+               .val(obj['value'])
+               .html(obj['name']));
+       });
+    });
+}
+
+The function $.getJSON() gets the file from the remote URL. The second parameter to getJSON() is the call back function that receives the data. The function gets the data and appends items to the list.
 
