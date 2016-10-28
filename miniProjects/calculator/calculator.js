@@ -1,3 +1,7 @@
+function spanClick(e){
+  console.log(e.innerHTML);
+}
+
 function add( x, y ){
   return x + y
 }
