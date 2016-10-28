@@ -1,19 +1,29 @@
-function spanClick(e){
-  console.log(e.innerHTML);
+var display = document.getElementById('display');
+display.value = "";
+var stack = '0';
+
+
+function numberClick(e){
+  var num = e.innerHTML,
+      last = stack[stack.length-1];
+
+  if( Number(last) || last === '0' ){
+    console.log('top')
+    display.value+=num;
+  } else {
+    display.value = num;
+  }
 }
 
-function add( x, y ){
-  return x + y
+function operatorClick(e){
+  var operator = e.innerHTML;
+  stack += display.value+operator;
 }
 
-function multiply( x, y ){
-  return x * y
+
+function equal(){
+  stack += display.value;
+  display.value = eval(stack);
+  stack = '';
 }
 
-function divide( x, y ){
-  return x/y
-}
-
-function subtract( x, y ){
-  return x - y
-}

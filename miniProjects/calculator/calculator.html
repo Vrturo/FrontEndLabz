@@ -7,29 +7,29 @@
   <body>
     <form class="calc">
       <div class="calc-display">
-        <input type="text" name="res" id="res" placeholder="Press Stuff!" class="calc-display-input">
+        <input type="text" name="display" id="display" placeholder="Press Stuff!" class="calc-display-input">
       </div>
       <div class="calc-pad">
         <span class="calc-button">MC</span>
         <span class="calc-button">M+</span>
         <span class="calc-button">M-</span>
         <span class="calc-button">MR</span>
-        <span class="calc-button" onclick="spanClick(this)">7</span>
-        <span class="calc-button" onclick="spanClick(this)">8</span>
-        <span class="calc-button" onclick="spanClick(this)">9</span>
-        <span class="calc-button red">x</span>
-        <span class="calc-button" onclick="spanClick(this)">4</span>
-        <span class="calc-button" onclick="spanClick(this)">5</span>
-        <span class="calc-button" onclick="spanClick(this)">6</span>
-        <span class="calc-button red">-</span>
-        <span class="calc-button" onclick="spanClick(this)">1</span>
-        <span class="calc-button" onclick="spanClick(this)">2</span>
-        <span class="calc-button" onclick="spanClick(this)">3</span>
-        <span class="calc-button red">+</span>
-        <span class="calc-button" onclick="spanClick(this)">0</span>
-        <span class="calc-button" onclick="spanClick(this)">.</span>
-        <span class="calc-button">C</span>
-        <span class="calc-button yellow">=</span>
+        <span class="calc-button" onclick="numberClick(this)">7</span>
+        <span class="calc-button" onclick="numberClick(this)">8</span>
+        <span class="calc-button" onclick="numberClick(this)">9</span>
+        <span class="calc-button red" onclick="operatorClick(this)">x</span>
+        <span class="calc-button" onclick="numberClick(this)">4</span>
+        <span class="calc-button" onclick="numberClick(this)">5</span>
+        <span class="calc-button" onclick="numberClick(this)">6</span>
+        <span class="calc-button red" onclick="operatorClick(this)">-</span>
+        <span class="calc-button" onclick="numberClick(this)">1</span>
+        <span class="calc-button" onclick="numberClick(this)">2</span>
+        <span class="calc-button" onclick="numberClick(this)">3</span>
+        <span class="calc-button red" onclick="operatorClick(this)">+</span>
+        <span class="calc-button" onclick="numberClick(this)">0</span>
+        <span class="calc-button" onclick="numberClick(this)">.</span>
+        <span class="calc-button" onclick="">C</span>
+        <span class="calc-button yellow" onclick="equal()">=</span>
       </div>
     </form>
   <script type="text/javascript" src="calculator.js"></script>
