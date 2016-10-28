@@ -17,6 +17,7 @@ function numberClick(e){
 
 function operatorClick(e){
   var operator = e.innerHTML;
+  if( operator === 'x' ) operator = '*';
   subProblems+=1;
   stack += display.value+operator;
 }
@@ -29,8 +30,8 @@ function equal(){
 }
 
 function restart(){
-  stack = '0';
+  stack = '';
   subProblems = 0;
-  display.value = '0';
+  display.value = '';
 }
 
