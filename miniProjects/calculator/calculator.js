@@ -1,6 +1,7 @@
 var display = document.getElementById('display');
 display.value = "";
-var stack = '0';
+var stack = '0',
+    subProblems = 0;
 
 
 function numberClick(e){
@@ -8,7 +9,6 @@ function numberClick(e){
       last = stack[stack.length-1];
 
   if( Number(last) || last === '0' ){
-    console.log('top')
     display.value+=num;
   } else {
     display.value = num;
@@ -17,6 +17,7 @@ function numberClick(e){
 
 function operatorClick(e){
   var operator = e.innerHTML;
+  subProblems+=1;
   stack += display.value+operator;
 }
 
@@ -25,5 +26,11 @@ function equal(){
   stack += display.value;
   display.value = eval(stack);
   stack = '';
+}
+
+function restart(){
+  stack = '0';
+  subProblems = 0;
+  display.value = '0';
 }
 
