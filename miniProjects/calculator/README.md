@@ -17,4 +17,4 @@ These are the buttons that work:
 
 
 
-####|Project Source: http://www.theodinproject.com/javascript-and-jquery/on-screen-calculator
+####Project Source: http://www.theodinproject.com/javascript-and-jquery/on-screen-calculator
