@@ -29,8 +29,6 @@ class DOM {
 
 var d = new DOM();
 var div = ss.select('div')
-console.log(d.hide(div))
-console.log(d.show(div))
 
 class EventDispatcher {
 
@@ -58,26 +56,122 @@ class EventDispatcher {
 // 4. Use the XHR’s send() method to send the request
 // 5. Receive the response
 
-class AjaxWrapper {
+// class AjaxWrapper {
 
-    request( url, method, id ){
-        document.getElementById(id).onclick=function(){
-            var xhr = new XMLHttpRequest();
-            xhr.open(method, url, true);
-            xhr.onreadystatechange = function () {
-                if ( xhr.readyState==4 && xhr.status==200 ){
-                    document.getElementById(id).innerHTML=xhr.responseText;
+//     request( url, method, id ){
+//         document.getElementById(id).onclick=function(){
+//             var xhr = new XMLHttpRequest();
+//             xhr.open(method, url, true);
+//             xhr.onreadystatechange = function () {
+//                 if ( xhr.readyState==4 && xhr.status==200 ){
+//                     document.getElementById(id).innerHTML=xhr.responseText;
+//                 }
+//             }
+//             xhr.send();
+//         }
+//     }
+// }
+
+// var ex = new AjaxWrapper();
+
+// console.log( ex.request('https://baconipsum.com/api/?type=meat-and-filler', 'GET', 'home') );
+
+function request( url, method ){
+    return new Promise( function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open(method, url, true);
+        xhr.onreadystatechange = function() {
+            if ( xhr.readyState==4 ){
+                if( xhr.status==200 ){
+                    resolve(xhr.responseText);
+                } else {
+                    reject(xhr.statusText);
                 }
             }
-            xhr.send();
         }
-    }
+        xhr.send();
+    });
 }
 
-var ex = new AjaxWrapper();
+var req = request('https://baconipsum.com/api/?type=meat-and-filler', 'GET');
+req.then( function( responseData ){
+    console.log(responseData);
+})
+req.catch( function( error ){
+    console.log(error);
+})
 
-console.log( ex.request('https://baconipsum.com/api/?type=meat-and-filler', 'GET', 'home') );
+// /** Think about the syntax you use when you perform a GET request with jquery **/
+// $.ajax({ /*I'm an object being used as an argument to this function*/});
+// $.ajax({ /*I also have require the keys; url & method**/
+//   url: 'https://jsonplaceholder.typicode.com/posts',
+//   method: 'GET'
+// });
 
+// /** now this looks familiar right? **/
+// $.ajax({
+//   url: 'https://jsonplaceholder.typicode.com/posts',
+//   method: 'GET'
+// })
+// .done( function (response) {
+//   console.log("response: \n", respones);
+// });
 
+// /** Not super important, but do note that you can switch "method" to "type", both work **/
+// $.ajax({
+//   url: 'https://jsonplaceholder.typicode.com/posts',
+//   type: 'GET'
+// })
+// .done( function (response) {
+//   console.log("response: \n", respones);
+// });
 
+// /** Also consider the fail case */
+// $.ajax({
+//   url: 'https://jsonplaceholder.typicode.com/posts',
+//   type: 'GET'
+// })
+// .fail( function (error) {
+//   console.log("error: \n", error);
+// });
 
+/** Consider the jQuery skeleton below: **/
+
+//jQuery Skeleton - GET REQUEST
+// $ = (function(){
+//     var jquery = function(){
+
+//     }
+//     ajax = function(object) {
+//         var p = new Promise( function (resolve, reject) {
+//         //what goes here ???
+//             var xhr = new XMLHttpRequest();
+//             if (object.method === 'GET' || object.type === 'GET') {
+//                 xhr.open(object.method, object.url, true);
+//                 xhr.onreadystatechange = function () {
+//                     if ( xhr.readyState === 4 && xhr.status == 200 ){
+//                             resolve(this.responseText);
+//                         } else {
+//                             reject(this.statusText);
+//                     }
+//                 }
+//                 xhr.send();
+//             }
+//         })
+
+//         return p;
+//         p.done = p.then; //mirror jquery ".done" function
+//         p.reject = p.fail; //mirror jquery ".fail" function
+//     }
+// });
+
+// $.ajax({
+//   method: 'GET',
+//   url: 'https://baconipsum.com/api/?type=meat-and-filler',
+//   done: function( resp ) {
+//     document.body.innerHTML = resp;
+//   },
+//   reject: function( req, status, err ) {
+//     console.log( status, err );
+//   }
+// });
