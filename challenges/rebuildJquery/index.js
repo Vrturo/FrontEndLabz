@@ -76,24 +76,26 @@ class EventDispatcher {
 
 // console.log( ex.request('https://baconipsum.com/api/?type=meat-and-filler', 'GET', 'home') );
 
-function request( url, method ){
-    return new Promise( function (resolve, reject) {
+// ----------------------GET
+function getRequest( url, method ){
+    var p = new Promise( function (resolve, reject) {
         var xhr = new XMLHttpRequest();
         xhr.open(method, url, true);
-        xhr.onreadystatechange = function() {
-            if ( xhr.readyState==4 ){
-                if( xhr.status==200 ){
-                    resolve(xhr.responseText);
-                } else {
-                    reject(xhr.statusText);
-                }
+        xhr.onload = function() {
+            if( xhr.status==200 ){
+                resolve(xhr.responseText);
+            } else {
+                reject(xhr.statusText);
             }
         }
         xhr.send();
     });
+    p.done = p.then;
+    p.fail = p.catch;
+    return p;
 }
 
-var req = request('https://baconipsum.com/api/?type=meat-and-filler', 'GET');
+var req = getRequest('https://baconipsum.com/api/?type=meat-and-filler', 'GET');
 req.then( function( responseData ){
     console.log(responseData);
 })
@@ -101,6 +103,34 @@ req.catch( function( error ){
     console.log(error);
 })
 
+
+// --------------------------- POST
+// function postRequest( url, method, newData ){
+//     var p = new Promise( function (resolve, reject) {
+//         var xhr = new XMLHttpRequest();
+//         xhr.open(method, url, true);
+//         xhr.onreadystatechange = function() {
+//             if ( xhr.readyState==4 ){
+//                 if( xhr.status==200 ){
+//                     resolve(xhr.responseText);
+//                 } else {
+//                     reject(xhr.statusText);
+//                 }
+//             }
+//         }
+//         xhr.send();
+//     });
+//     p.done = p.then;
+//     p.fail = p.catch;
+// }
+
+// var req = request('https://baconipsum.com/api/?type=meat-and-filler', 'GET');
+// req.then( function( responseData ){
+//     console.log(responseData);
+// })
+// req.catch( function( error ){
+//     console.log(error);
+// })
 // /** Think about the syntax you use when you perform a GET request with jquery **/
 // $.ajax({ /*I'm an object being used as an argument to this function*/});
 // $.ajax({ /*I also have require the keys; url & method**/
