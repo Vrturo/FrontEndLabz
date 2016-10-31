@@ -88,6 +88,7 @@ function getRequest( url, method ){
                 reject(xhr.statusText);
             }
         }
+        console.log(xhr.getAllResponseHeaders())
         xhr.send();
     });
     p.done = p.then;
@@ -105,24 +106,23 @@ req.catch( function( error ){
 
 
 // --------------------------- POST
-// function postRequest( url, method, newData ){
-//     var p = new Promise( function (resolve, reject) {
-//         var xhr = new XMLHttpRequest();
-//         xhr.open(method, url, true);
-//         xhr.onreadystatechange = function() {
-//             if ( xhr.readyState==4 ){
-//                 if( xhr.status==200 ){
-//                     resolve(xhr.responseText);
-//                 } else {
-//                     reject(xhr.statusText);
-//                 }
-//             }
-//         }
-//         xhr.send();
-//     });
-//     p.done = p.then;
-//     p.fail = p.catch;
-// }
+function postRequest( url, method, newData ){
+    var p = new Promise( function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open(method, url);
+        xhr.onload = function() {
+            if( xhr.status==200 && xhr.responseText === newData ){
+                resolve(xhr.responseText);
+            } else {
+                reject(xhr.statusText);
+            }
+        }
+        xhr.send();
+    });
+    p.done = p.then;
+    p.fail = p.catch;
+    return p;
+}
 
 // var req = request('https://baconipsum.com/api/?type=meat-and-filler', 'GET');
 // req.then( function( responseData ){
