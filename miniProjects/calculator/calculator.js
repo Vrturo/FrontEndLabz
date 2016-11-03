@@ -1,37 +1,69 @@
-var display = document.getElementById('display');
-display.value = "";
-var stack = '0',
-    subProblems = 0;
+class Calculator {
+    constructor(){
+        this.stack = "";
+        this.current = ""; // keep track of double digits
+        var display = document.getElementById('display');
+        display.value = ''
+    }
 
+    numHandler(e){
+        if( this.current.length < 1 ){ // if there's no current number
+            display.value = e;
+            this.current += e;
+        } else {
+            this.current += e;
+            display.value = this.current;
+        }
+    }
 
-function numberClick(e){
-  var num = e.innerHTML,
-      last = stack[stack.length-1];
+    operatorHandler(e){
+        if( e === 'x' ) e = '*';
+        this.stack += this.current;
+        this.current = '';
+        this.stack += e;
+    }
 
-  if( Number(last) || last === '0' ){
-    display.value+=num;
-  } else {
-    display.value = num;
-  }
+    equalHandler(){
+        if( this.stack.length < 1 ){
+            display.value = '';
+        } else {
+            this.stack += display.value;
+            display.value = eval(this.stack);
+        }
+        this.stack = '';
+        this.current = '';
+    }
+
+    clearHandler(){
+        display.value = '';
+        this.stack = '';
+        this.current = '';
+    }
 }
+document.addEventListener("DOMContentLoaded", function(){
+    var calc = new Calculator,
+        nums = document.getElementsByClassName('num');
 
-function operatorClick(e){
-  var operator = e.innerHTML;
-  if( operator === 'x' ) operator = '*';
-  subProblems+=1;
-  stack += display.value+operator;
-}
+    for( var i=0; i<nums.length; i++ ){ // set listeners for numbers pressed
+        nums[i].addEventListener('click', function(){
+            calc.numHandler(this.innerHTML);
+        });
+    }
 
+    var operators = document.getElementsByClassName('operator');
+    for( var j=0; j<operators.length; j++ ){ // set listeners for operators pressed
+        operators[j].addEventListener('click', function(){
+            calc.operatorHandler(this.innerHTML);
+        });
+    }
 
-function equal(){
-  stack += display.value;
-  display.value = eval(stack);
-  stack = '';
-}
+    var equal = document.getElementById('equal');
+    equal.addEventListener('click', function(){
+        calc.equalHandler();
+    });
 
-function restart(){
-  stack = '';
-  subProblems = 0;
-  display.value = '';
-}
-
+    var clear = document.getElementById('clear');
+    clear.addEventListener('click', function(){
+        calc.clearHandler();
+    });
+});
