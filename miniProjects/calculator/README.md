@@ -1,6 +1,6 @@
 #Project: Building An On Screen Calculator Using Javascript
 
-### A simple implementation to flex some JS, JQuery, ...
+### A simple implementation to flex some JS, JQuery, etc.. to drill in my understanding of these languages.
 
 These are the buttons that work:
 
