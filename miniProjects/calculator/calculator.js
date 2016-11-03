@@ -58,12 +58,12 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     var equal = document.getElementById('equal');
-    equal.addEventListener('click', function(){
+    equal.addEventListener('click', function(){ // set listener for when equal sign is pressed
         calc.equalHandler();
     });
 
     var clear = document.getElementById('clear');
-    clear.addEventListener('click', function(){
+    clear.addEventListener('click', function(){ // set listener for when equal sign is pressed
         calc.clearHandler();
     });
 });
