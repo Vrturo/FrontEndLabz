@@ -1,8 +1,8 @@
+console.log('hey')
 ReactDOM.render(
   <Game />,
   document.getElementById('container')
 );
-
 function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],
