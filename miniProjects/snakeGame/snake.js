@@ -25,3 +25,8 @@ class Snake {
   }
 }
 
+
+ function generatefood(){
+    var r1 = Math.floor(Math.random() * 19);
+    var c1 = Math.floor(Math.random() * 19);
+ }
