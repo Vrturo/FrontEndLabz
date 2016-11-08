@@ -5,13 +5,16 @@ body {
   margin: 20px 0;
   padding: 10px;
 }
-
-.box {
-    margin: 0 auto;
-    float:left;
-    width:.7em;
-    height:.7em;
-    margin-right:5px;
-    margin-bottom:5px;
-    background-color: black;
+.cells {
+  float: left;
+  background: black;
+  width: 15px;
+  height: 15px;
+  outline: 1px solid red;
+}
+.snake {
+  background-color: green;
+}
+.food {
+  background: red;
 }
