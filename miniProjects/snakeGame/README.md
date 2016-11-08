@@ -2,6 +2,7 @@
 
 ###Objective:
 Take a deeper dive into working with events by building a simple Snake game.
+Key events are detected and processed to control the Snake's movement.
 
 **Note**: I wanted to get a better grasp of OOP in JS
 
