@@ -1,9 +1,9 @@
 function renderGrid(){
   var $grid = $("<div></div>");
 
-  for(var i = 0; i <= 40; i++) {
-      for (var j = 0; j <= 40; j++){
-          $("<div></div>").addClass("box").appendTo($grid);
+  for(var row = 0; row <= 40; row++) {
+      for (var column = 0; column <= 40; column++){
+          $('#container').append('<div class=cells id=c_'+row+'_'+column+'></div>');
       }
   }
 
@@ -27,6 +27,7 @@ class Snake {
 
 
  function generatefood(){
-    var r1 = Math.floor(Math.random() * 19);
-    var c1 = Math.floor(Math.random() * 19);
+    var x = Math.floor(Math.random() * 19);
+    var y = Math.floor(Math.random() * 19);
+    $('#c_' + x + '_' + y).addClass('food');
  }
