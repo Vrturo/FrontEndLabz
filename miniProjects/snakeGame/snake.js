@@ -35,50 +35,70 @@ class Game {
 
 class Snake {
   constructor(){
-    this.direction = 4;
     this.position = ["20_20", "20_19", "20_18"]
-    this.tail = this.position.pop();
-    this.head = this.position[0].split('_');
-    var row = parseInt(this.head[0]);
-    var col = parseInt(this.head[1]);
-    $('#c_' + row + '_' + col).addClass('snake');
-    this.location = row + "_" + col;
-    switch(this.direction){
-      case 1: row += 1; break;
-      case 2: col -= 1; break;
-      case 3: row -= 1; break;
-      case 4: col += 1; break;
-    }
+    this.direction = 4;
+    this.head;
+    this.tail;
+    this.currentRow;
+    this.currentCol;
+  }
+
+  reset(){
+      this.position = ["20_20", "20_19", "20_18"];
+      this.dir = 4;
+      super.food = "";
+      super.speed = 200;
+      super.score = 0;
+      super.level = 0;
   }
 
   go(){
-    if (this.location === super.food) {
-      this.position.push(tail);
-      var points = super.score += 1;
+    this.tail = this.position.pop();
+    $('#c_'+this.tail).removeClass('snake');
+    this.head = this.position[0].split('_');
+    this.currentRow = parseInt(this.head[0]);
+    this.currentCol = parseInt(this.head[1]);
+    $('#c_' + this.currentRow + '_' + this.currentCol).addClass('snake');
+    switch(this.direction){
+      case 1: this.currentRow += 1; break;
+      case 2: this.currentCol -= 1; break;
+      case 3: this.currentRow -= 1; break;
+      case 4: this.currentCol += 1; break;
+    }
+    this.currentLocation = this.currentRow + "_" + this.currentCol;
 
-      if (points % 100 == 0) {
-        $('#level').text(super.level += 1);
-        if (super.level == 5) {
-          $('.cells').css('outline','none')
-        }
-        if (super.speed > 0) { super.speed -= 20; }
-      }
+    if (this.currentLocation === super.food) {
+      this.position.push(this.tail);
+      super.score += 1;
+
       $('#score').text(super.points);
-      $('#c_'+tail).addClass('snake');
-      $('#c_'+super.food).removeClass('food');
+      $('#c_' + this.tail).addClass('snake');
+      $('#c_' + super.food).removeClass('food');
       generatefood();
     }
-    this.position.unshift(location);
-  }
 
-}
+    this.position.unshift(this.currentLocation);
+    if (this.currentCol < 0 || this.currentRow < 0 || this.currentCol > 39 || this.currentRow > 39 || $('#c_'+this.currentLocation).hasClass('snake')){
+      console.log(this.currentCol, this.currentRow)
+      alert('You lost !');
+      this.reset()
+    } else {
+      $('#c_' + this.currentLocation).addClass('snake');
+      setTimeout(function(){ go() }, super.speed);
+    }
+
+  } // end go function
+
+} // end Snake class
 
 
 
 var newGame = new Game;
 newGame.renderGrid();
 newGame.renderSnake();
-newGame.snake.go()
+newGame.generatefood();
+newGame.snake.go();
+
 
 $(document).keypress(function(e){
     e.preventDefault();

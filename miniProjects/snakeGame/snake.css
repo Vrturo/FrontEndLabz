@@ -13,7 +13,7 @@ body {
   outline: 1px solid red;
 }
 .snake {
-  background-color: green;
+  background: green;
 }
 .food {
   background: red;
