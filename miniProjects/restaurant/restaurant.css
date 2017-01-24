@@ -30,7 +30,7 @@ When a radio button is :checked, make the adjacent content area sit on top with 
   position: absolute;
   top: 28px;
   left: 0;
-  background: white;
+  background: rgba(255,255,255,.5);
   right: 0;
   bottom: 0;
   padding: 20px;
