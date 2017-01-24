@@ -5,6 +5,7 @@ When a radio button is :checked, make the adjacent content area sit on top with 
 (visually revealing it and hiding the others).
 */
 
+
 .tabs {
   position: relative;
   min-height: 200px; /* This part sucks */
@@ -42,4 +43,15 @@ When a radio button is :checked, make the adjacent content area sit on top with 
 }
 [type=radio]:checked ~ label ~ .content {
   z-index: 1;
+}
+#content {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
+}
+.contentwidth {
+}
+.contentheight {
+  height: 100%;
 }
