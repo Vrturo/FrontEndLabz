@@ -1,3 +1,10 @@
+/*Hide the radio buttons (we don't need to see them, we just need them to be checked or unchecked).
+Float the tabs so the labels fall into a row-of-links structure.
+Absolutely position the content areas exactly on top of each other.
+When a radio button is :checked, make the adjacent content area sit on top with z-index
+(visually revealing it and hiding the others).
+*/
+
 .tabs {
   position: relative;
   min-height: 200px; /* This part sucks */
