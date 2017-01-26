@@ -1,4 +1,6 @@
-$(document).ready( function(){
+(function() {
+
+
   // content background
   $('#content')[0].style.backgroundImage = "url('food.jpg')";
   var theWindow = $(window),
@@ -96,7 +98,4 @@ $(document).ready( function(){
    * Attach to global namespace
    */
   window.tabs = tabs;
-
-
-
-});
+})();
