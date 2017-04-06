@@ -1,3 +1,3 @@
 var sayHello = require('./say-hello');
  
-sayHello('Guybrush', document.querySelector('h2'));
+sayHello('Art', document.querySelector('h2'));
