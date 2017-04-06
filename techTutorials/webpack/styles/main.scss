@@ -1,4 +1,6 @@
+$background: blue;
+ 
 h2 {
-    background: blue;
+    background: $background;
     color: yellow;
 }
