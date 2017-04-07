@@ -6,6 +6,7 @@ var uglify = require('gulp-uglify');
 var gulpIf = require('gulp-if');
 var imagemin = require('gulp-imagemin');
 var cache = require('gulp-cache');
+var del = require('del');
 
 
 gulp.task('hello', function() {
@@ -42,7 +43,7 @@ gulp.task('useref', function(){
     .pipe(useref())
     // Minifies only if it's a JavaScript file
     .pipe(gulpIf('*.js', uglify()))
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('images', function(){
@@ -50,10 +51,14 @@ gulp.task('images', function(){
 		.pipe(cache(imagemin({
 			interlaced: true
 		})))
-		.pipe(gulp.dest('dist/images'))
+		.pipe(gulp.dest('dist/images'));
 })
 
 gulp.task('fonts', function() {
 	return gulp.src('app/fonts/**/*')
-		.pipe(gulp.dest('dist/fonts'))
+		.pipe(gulp.dest('dist/fonts'));
+})
+
+gulp.task('clean:dist', function() {
+	return del.sync('dist');
 })
