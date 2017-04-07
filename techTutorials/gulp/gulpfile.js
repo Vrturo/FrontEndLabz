@@ -1,6 +1,12 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var browserSync = require('browser-sync').create();
+var useref = require('gulp-useref');
+var uglify = require('gulp-uglify');
+var gulpIf = require('gulp-if');
+var imagemin = require('gulp-imagemin');
+var cache = require('gulp-cache');
+
 
 gulp.task('hello', function() {
   // Stuff here
@@ -29,4 +35,25 @@ gulp.task('browserSync', function() {
       baseDir: 'app'
     },
   })
+})
+
+gulp.task('useref', function(){
+  return gulp.src('app/*.html')
+    .pipe(useref())
+    // Minifies only if it's a JavaScript file
+    .pipe(gulpIf('*.js', uglify()))
+    .pipe(gulp.dest('dist'))
+});
+
+gulp.task('images', function(){
+	return gulp.src('app/images/**/*.+(png|jpg|gif|svg)')
+		.pipe(cache(imagemin({
+			interlaced: true
+		})))
+		.pipe(gulp.dest('dist/images'))
+})
+
+gulp.task('fonts', function() {
+	return gulp.src('app/fonts/**/*')
+		.pipe(gulp.dest('dist/fonts'))
 })
