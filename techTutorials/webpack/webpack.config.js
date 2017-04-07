@@ -5,11 +5,11 @@ module.exports = {
   },
   module: {
     preLoaders: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          loader: 'jshint'
-        }
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'jshint-loader'
+      }
     ],
     loaders: [
       {
