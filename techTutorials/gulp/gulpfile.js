@@ -7,6 +7,7 @@ var gulpIf = require('gulp-if');
 var imagemin = require('gulp-imagemin');
 var cache = require('gulp-cache');
 var del = require('del');
+var runSequence = require('run-sequence');
 
 
 gulp.task('hello', function() {
@@ -62,3 +63,21 @@ gulp.task('fonts', function() {
 gulp.task('clean:dist', function() {
 	return del.sync('dist');
 })
+
+gulp.task('cache:clear', function (callback) {
+	return cache.clearAll(callback)
+})
+
+gulp.task('build', function(callback) {
+	return runSequence('clean:dist',
+		['sass', 'useref', 'images', 'fonts'],
+		callback
+	)
+})
+
+gulp.task('default', function(callback) {
+  runSequence(['sass','browserSync', 'watch'],
+    callback
+  )
+})
+
