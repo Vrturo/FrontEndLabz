@@ -1,8 +1,6 @@
 require('./app.scss');
 
 import React from 'react';
+import HarViewer from './components/HarViewer.jsx'
 
-React.render(
-	<h1>React Deep Dive</h1>,
-	document.body
-)
+React.render(<HarViewer />, document.body);
