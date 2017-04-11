@@ -7,6 +7,7 @@ import {Grid, Row, Col, PageHeader, Button, ButtonGroup, Input} from 'react-boot
 import FixedDataTable from 'fixed-data-table';
 const Table = FixedDataTable.Table;
 const Column = FixedDataTable.Column;
+const GutterWidth = 30;
 
 export default class HarViewer extends React.Component {
 
@@ -76,6 +77,25 @@ export default class HarViewer extends React.Component {
 		columnWidths[datakey] = newColumnWidth;
 
 		this.setState({ columnWidths: columnWidths, isColumnResizing: false });
+	}
+
+	// --------------------------------
+	// Table Resizing
+	// --------------------------------
+
+	componentDidMount() {
+
+		window.addEventListener('resize', _.debounce(this._onResize.bind(this), 50, {leading: true, trailing: true}));
+		this._onResize();
+	}
+
+	_onResize() {
+		var parent = React.findDOMNode(this).parentNode;
+
+		this.setState({
+			tableWidths: parent.clientWidth - GutterWidth,
+			tableHeights: document.body.clientHeight - parent.offsetTop - GutterWidth * 0.5
+		})
 	}
 
 }
