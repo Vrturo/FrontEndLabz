@@ -20,7 +20,7 @@ export default class HarViewer extends React.Component {
     		size: 100,
     		time: 200
     	},
-    	tableWidths: 1000,
+    	tableWidth: 1000,
     	tableHeight: 500
     };
 	}
@@ -38,7 +38,7 @@ export default class HarViewer extends React.Component {
 	      <Row>
 	        <Col sm={12}>
 	        	<Table rowsCount={this.props.entries.length}
-	        				 width={this.state.tableWidths}
+	        				 width={this.state.tableWidth}
 	        				 headerHeight={30}
 	        				 height={this.state.tableHeight}
 	        				 rowHeight={30}
@@ -93,8 +93,8 @@ export default class HarViewer extends React.Component {
 		var parent = React.findDOMNode(this).parentNode;
 
 		this.setState({
-			tableWidths: parent.clientWidth - GutterWidth,
-			tableHeights: document.body.clientHeight - parent.offsetTop - GutterWidth * 0.5
+			tableWidth: parent.clientWidth - GutterWidth,
+			tableHeight: document.body.clientHeight - parent.offsetTop - GutterWidth * 0.5
 		})
 	}
 
