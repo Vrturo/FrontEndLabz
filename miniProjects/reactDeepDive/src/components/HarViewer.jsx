@@ -26,6 +26,11 @@ export default class HarViewer extends React.Component {
 	}
 
 	render() {
+
+		var buttons = _.map(_.keys(mimeTypes.types), (x) => {
+			return this._createButton(x, mimeTypes.types[x].label);
+		});
+		
 		return (
 			<Grid>
 
@@ -33,6 +38,30 @@ export default class HarViewer extends React.Component {
 	        <Col sm={12}>
 	        	<PageHeader>Har Viewer</PageHeader>
 	        </Col>
+
+	        <Col sm={3} smOffset={9}>
+	        	<div>
+	        		<label className="control-label"></label>
+	        		<select className="form-control" onChange={this._sampleChanged.bind(this)}>
+	        			<option value="">---</option>
+        			</select>
+	        	</div>
+	        </Col>
+	      </Row>
+
+	      <Row>
+	      	<Col sm={12}>
+	      		<p>Pie Chart</p>
+	      	</Col>
+	      </Row>
+
+	      <Row>
+	      	<Col sm={8}>
+	      		<ButtonGroup bsSize="small">
+	      			{this._createButton('all', 'All')}
+	      			{buttons}
+      			</ButtonGroup>
+	      	</Col>
 	      </Row>
 
 	      <Row>
